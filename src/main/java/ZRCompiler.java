@@ -159,7 +159,7 @@ public class ZRCompiler {
     /**
      * Compiles entered commands.
      * Returns empty String if lookahead is not in Follow Set of
-     * the Commands rule.
+     * the "Commands" rule.
      *
      * @return compiled commands
      */
