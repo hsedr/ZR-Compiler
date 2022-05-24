@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZeichenRoboter</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="500"
+      height="500"
+      style="border: 1px solid #000000"
+    >
+    </canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.fillSytle = "black";
+      ctx.strokeStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      class Vector2 {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+
+        /**
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        static add(v1, v2) {
+          return new Vector2(v1.x + v2.x, v1.y + v2.y);
+        }
+
+        /**
+         * @param {Vector2} v
+         * @param {number} alpha
+         */
+        static rotate(v, alpha) {
+          alpha = alpha * (Math.PI / 180);
+          var x = Math.cos(alpha) * v.x - Math.sin(alpha) * v.y;
+          var y = Math.sin(alpha) * v.x + Math.cos(alpha) * v.y;
+          return new Vector2(
+            Math.round(x * 10000) / 10000,
+            Math.round(y * 10000) / 10000
+          );
+        }
+
+        /**
+         * @param {Vector2} v1
+         * @param {Vector2} v2
+         */
+        static mul(v1, v2) {
+          var x = v1.x * v2.x;
+          var y = v1.y * v2.y;
+          return new Vector2(x, y);
+        }
+
+        /**
+         * @param {Vector2} v1
+         * @param {number} num
+         */
+        static mul(v1, num) {
+          var x = v1.x * num;
+          var y = v1.y * num;
+          return new Vector2(x, y);
+        }
+
+        /**
+         * @param {number} num
+         */
+        mul(num) {
+          var x = this.x * num;
+          var y = this.y * num;
+          return new Vector2(x, y);
+        }
+
+        /**
+         * @param {Vector2} v
+         */
+        static normalized(v) {
+          return new Vector2(v.x, v.y).mul(1 / v.magnitude());
+        }
+
+        normalized() {
+          return new Vector2(this.x, this.y).mul(1 / this.magnitude());
+        }
+
+        magnitude() {
+          var sqrX = Math.pow(this.x, 2);
+          var sqrY = Math.pow(this.y, 2);
+          return Math.sqrt(sqrX + sqrY);
+        }
+      }
+      class Turtle {
+        /**
+         * @param {Vector2} posV
+         * @param {Vector2} dirV
+         */
+        constructor(posV, dirV) {
+          this.posV = posV;
+          this.dirV = dirV;
+          this.drawing = false;
+        }
+
+        /**
+         * @param {number} angle
+         */
+        turnRight(angle) {
+          this.dirV = Vector2.rotate(this.dirV, angle);
+        }
+
+        move(num) {
+          ctx.moveTo(this.posV.x, this.posV.y);
+          this.posV = Vector2.add(this.posV, this.dirV.normalized().mul(num));
+          ctx.lineTo(this.posV.x, this.posV.y);
+          ctx.stroke();
+        }
+
+         setPen() {
+            if (this.drawing) this.drawing = false;
+            else {
+                this.drawing = true;
+                ctx.beginPath(this.posV.x, this.posV.y);
+            }
+         }
+
+         setColor(color){
+            ctx.strokeStyle = color;
+         }
+
+         penWidth(num){
+            ctx.lineWidth = parseInt(num);
+         }
+      }
+      var turtle = new Turtle(new Vector2(250, 450), new Vector2(0, -1));
+      turtle.setColor('yellow');
+	turtle.move(200);
+	turtle.penWidth(1);
+ turtle.setPen();
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	turtle.turnRight(10);
+	turtle.move(10);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	turtle.move(100);
+	turtle.turnRight(90);
+	
+	
+	
+      console.log(turtle);
+    </script>
+  </body>
+</html>
