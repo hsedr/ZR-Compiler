@@ -1,7 +1,7 @@
 # ZR-Compiler
 ### Small Compiler for ZR-Language written in Java.
 
-ZR Grammar implemented as follows:
+ZR Grammar implemented as following:
 
 Start -> Commands  
 Commands -> Command Commands \| EPSILON  
